@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-gradient-to-br from-slate-50 to-slate-100/80;
+    background-attachment: fixed;
+  }
+
+  body {
+    @apply font-sans antialiased text-slate-800;
+    background: radial-gradient(circle at 50% 50%, rgba(99,102,241,0.03), transparent 70%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-xl
+           border border-slate-200/60
+           shadow-[0_8px_16px_-6px_rgba(15,23,42,0.08),0_4px_8px_-4px_rgba(15,23,42,0.05)]
+           hover:shadow-[0_16px_24px_-8px_rgba(15,23,42,0.12),0_8px_12px_-4px_rgba(15,23,42,0.08)]
+           hover:border-slate-300/60
+           transition-all duration-300;
+  }
+
+  .input {
+    @apply bg-white border border-slate-200/80
+           focus:border-primary-300/60 focus:ring-2 focus:ring-primary-200/50
+           rounded-lg px-4 py-2.5 text-slate-800
+           placeholder:text-slate-500
+           shadow-[inset_0_1px_2px_rgba(0,0,0,0.08)]
+           hover:border-slate-300/80
+           transition-all duration-200;
+  }
+
+  .button-primary {
+    @apply bg-gradient-to-br from-primary-500 to-primary-600
+           hover:from-primary-600 hover:to-primary-700
+           text-white font-semibold rounded-lg px-4 py-2.5
+           shadow-[0_4px_12px_-6px_rgba(99,102,241,0.4)]
+           hover:shadow-[0_6px_16px_-6px_rgba(99,102,241,0.5)]
+           transition-all duration-300;
+  }
+
+  .button-secondary {
+    @apply bg-white border border-slate-200/80
+           hover:border-slate-300/80 hover:bg-slate-50
+           text-slate-700 font-semibold rounded-lg px-4 py-2.5
+           shadow-[0_4px_12px_-6px_rgba(15,23,42,0.12)]
+           hover:shadow-[0_6px_16px_-6px_rgba(15,23,42,0.16)]
+           transition-all duration-300;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg
+           text-slate-600 font-medium
+           hover:bg-white hover:text-slate-900
+           active:bg-white active:text-primary-600
+           transition-all duration-200;
+  }
+
+  .nav-item-active {
+    @apply bg-white text-primary-600
+           shadow-[0_4px_12px_-6px_rgba(99,102,241,0.4)]
+           border border-primary-200/40;
+  }
+}

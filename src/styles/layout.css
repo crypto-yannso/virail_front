@@ -1,0 +1,17 @@
+@layer utilities {
+  .container-max {
+    @apply max-w-[1200px] mx-auto px-4;
+  }
+
+  .grid-layout {
+    @apply grid grid-cols-12 gap-6;
+  }
+
+  .spacing-y {
+    @apply space-y-4 md:space-y-6;
+  }
+
+  .spacing-x {
+    @apply space-x-2 md:space-x-4;
+  }
+}

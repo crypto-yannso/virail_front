@@ -1,0 +1,17 @@
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+
+  .neon-glow {
+    @apply shadow-[0_0_20px_rgba(0,240,255,0.3)];
+  }
+
+  .neon-text {
+    @apply bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent;
+  }
+
+  .animate-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:neon-glow;
+  }
+}

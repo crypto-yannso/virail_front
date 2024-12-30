@@ -1,0 +1,41 @@
+@layer utilities {
+  .cyber-gradient {
+    background: linear-gradient(
+      135deg,
+      theme('colors.neon.blue'),
+      theme('colors.neon.purple')
+    );
+  }
+
+  .cyber-border {
+    @apply relative;
+    &::before {
+      content: '';
+      @apply absolute inset-0 cyber-gradient -z-10;
+      @apply rounded-[inherit] p-[1px];
+      @apply animate-border-flow;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+    }
+  }
+
+  .cyber-glow {
+    box-shadow: 0 0 20px theme('colors.neon.blue'),
+                0 0 40px theme('colors.neon.purple');
+  }
+
+  .cyber-text {
+    @apply cyber-gradient bg-clip-text text-transparent;
+  }
+
+  .shine-effect {
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: background-shine 2s linear infinite;
+  }
+}

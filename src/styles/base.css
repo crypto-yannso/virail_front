@@ -1,0 +1,30 @@
+@layer base {
+  /* Reset all text to black by default */
+  * {
+    @apply text-black;
+  }
+
+  body {
+    @apply bg-white font-sans antialiased;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold text-black;
+  }
+
+  /* Links */
+  a {
+    @apply text-black hover:text-black/80 transition-colors;
+  }
+
+  /* Form elements */
+  input, textarea, select {
+    @apply text-black placeholder:text-black/50;
+  }
+
+  /* Buttons */
+  button {
+    @apply text-black disabled:text-black/50;
+  }
+}

@@ -1,0 +1,26 @@
+@layer base {
+  html {
+    @apply bg-cyber-black text-black;
+  }
+
+  body {
+    @apply font-sans antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-display uppercase tracking-wider text-black;
+    @apply cyber-text;
+  }
+
+  h1 { @apply text-4xl md:text-5xl mb-8; }
+  h2 { @apply text-3xl md:text-4xl mb-6; }
+  h3 { @apply text-2xl md:text-3xl mb-4; }
+
+  .cyber-heading {
+    @apply relative inline-flex items-center text-black
+           before:content-['['] after:content-[']']
+           before:mr-2 after:ml-2
+           before:text-neon-blue after:text-neon-blue
+           before:animate-glow-pulse after:animate-glow-pulse;
+  }
+}

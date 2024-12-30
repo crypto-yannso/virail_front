@@ -1,0 +1,71 @@
+@layer components {
+  /* Cards */
+  .card-base {
+    @apply card-gradient rounded-lg shadow-sm p-6 card-hover;
+  }
+
+  .card-stats {
+    @apply card-base flex items-center gap-4;
+  }
+
+  .card-metric {
+    @apply card-base relative overflow-hidden;
+  }
+
+  /* Buttons */
+  .btn-base {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply btn-base btn-gradient;
+  }
+
+  .btn-secondary {
+    @apply btn-base btn-light;
+  }
+
+  /* Inputs */
+  .input-base {
+    @apply w-full px-4 py-2 rounded-lg input-gradient;
+  }
+
+  .input-search {
+    @apply input-base pl-10;
+  }
+
+  /* Icons */
+  .icon-gradient {
+    @apply p-2 rounded-lg bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-600;
+  }
+
+  /* Stats */
+  .stat-card {
+    @apply card-stats;
+  }
+
+  .stat-value {
+    @apply text-2xl font-semibold text-gradient;
+  }
+
+  .stat-label {
+    @apply text-sm text-gray-600;
+  }
+
+  /* Badges */
+  .badge-base {
+    @apply px-2 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-success {
+    @apply badge-base bg-emerald-100 text-emerald-700;
+  }
+
+  .badge-warning {
+    @apply badge-base bg-amber-100 text-amber-700;
+  }
+
+  .badge-info {
+    @apply badge-base bg-indigo-100 text-indigo-700;
+  }
+}

@@ -1,0 +1,25 @@
+@layer utilities {
+  .animate-glow {
+    @apply transition-shadow duration-200
+           hover:shadow-glow;
+  }
+
+  .animate-scale {
+    @apply transition-transform duration-150
+           hover:scale-[1.02];
+  }
+
+  .animate-glass {
+    @apply transition-all duration-200
+           hover:bg-white/10;
+  }
+
+  .modal-enter {
+    @apply opacity-0 scale-95;
+  }
+
+  .modal-enter-active {
+    @apply opacity-100 scale-100
+           transition-all duration-200;
+  }
+}

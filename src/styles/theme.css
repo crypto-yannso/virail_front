@@ -1,0 +1,55 @@
+/* Base theme colors and typography */
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary: theme('colors.indigo.600');
+    --color-primary-light: theme('colors.indigo.100');
+    --color-secondary: theme('colors.purple.600');
+    --color-secondary-light: theme('colors.purple.100');
+    
+    /* Accent Colors */
+    --color-accent-1: theme('colors.emerald.500');
+    --color-accent-2: theme('colors.amber.500');
+    --color-accent-3: theme('colors.rose.500');
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    --gradient-light: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
+  }
+}
+
+/* Text styles */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600;
+}
+
+.heading-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-700 to-purple-700 font-semibold;
+}
+
+/* Card styles */
+.card-gradient {
+  @apply bg-gradient-to-br from-white to-indigo-50/30 border border-indigo-100;
+}
+
+.card-hover {
+  @apply hover:shadow-lg hover:shadow-indigo-100/50 transition-all duration-300;
+}
+
+/* Button styles */
+.btn-gradient {
+  @apply bg-gradient-to-r from-indigo-600 to-purple-600 text-white 
+         hover:from-indigo-700 hover:to-purple-700
+         active:from-indigo-800 active:to-purple-800;
+}
+
+.btn-light {
+  @apply bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700
+         hover:from-indigo-100 hover:to-purple-100;
+}
+
+/* Input styles */
+.input-gradient {
+  @apply bg-gradient-to-r from-indigo-50/50 to-purple-50/50 border-2 border-indigo-100
+         focus:border-indigo-300 focus:ring-2 focus:ring-indigo-200;
+}
