@@ -1,3 +1,3 @@
-# virail_front
+# to start run 
 
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/crypto-yannso/virail_front)
+npm install && npm run dev
