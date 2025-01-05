@@ -1,0 +1,43 @@
+@layer utilities {
+  .glass {
+    @apply bg-dark-panel border border-white/20 dark:border-border-dark;
+  }
+  
+  .glass-hover {
+    @apply hover:bg-white/10 dark:hover:bg-dark-tertiary
+           transition-all duration-200;
+  }
+
+  .glass-active {
+    @apply bg-white/15 dark:bg-dark-quaternary;
+  }
+
+  .glass-button {
+    @apply bg-primary/20 dark:bg-accent-blue/20 
+           hover:bg-primary/30 dark:hover:bg-accent-blue/30 
+           border border-white/20 dark:border-border-dark
+           transition-all duration-200
+           hover:shadow-glow dark:hover:shadow-dark-glow;
+  }
+
+  .glass-card {
+    @apply bg-white/10 dark:bg-dark-secondary
+           border border-white/20 dark:border-border-dark
+           shadow-lg dark:shadow-dark-lg
+           hover:shadow-xl dark:hover:shadow-dark-xl
+           transition-all duration-300;
+  }
+
+  .glass-input {
+    @apply bg-white/5 dark:bg-dark-tertiary
+           border border-white/20 dark:border-border-dark
+           focus:border-primary/50 dark:focus:border-accent-blue/50
+           focus:ring-2 focus:ring-primary/20 dark:focus:ring-accent-blue/20
+           placeholder:text-white/50 dark:placeholder:text-text-secondary/50
+           transition-all duration-200;
+  }
+
+  .glass-divider {
+    @apply border-white/10 dark:border-border-dark;
+  }
+}

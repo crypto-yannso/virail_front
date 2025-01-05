@@ -1,0 +1,80 @@
+@layer utilities {
+  .cyber-gradient {
+    background: linear-gradient(
+      135deg,
+      theme('colors.neon.blue'),
+      theme('colors.neon.purple')
+    );
+  }
+
+  .dark .cyber-gradient {
+    background: linear-gradient(
+      135deg,
+      theme('colors.accent.blue'),
+      theme('colors.accent.purple')
+    );
+  }
+
+  .cyber-border {
+    @apply relative;
+    &::before {
+      content: '';
+      @apply absolute inset-0 cyber-gradient -z-10;
+      @apply rounded-[inherit] p-[1px];
+      @apply animate-border-flow;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+    }
+  }
+
+  .cyber-glow {
+    @apply shadow-[0_0_20px_theme('colors.neon.blue'),0_0_40px_theme('colors.neon.purple')]
+           dark:shadow-[0_0_20px_theme('colors.accent.blue'),0_0_40px_theme('colors.accent.purple')];
+  }
+
+  .cyber-text {
+    @apply cyber-gradient bg-clip-text text-transparent
+           dark:text-accent-blue;
+  }
+
+  .shine-effect {
+    @apply bg-gradient-to-r from-transparent via-white/30 to-transparent dark:via-white/10
+           bg-[length:200%_100%]
+           animate-background-shine;
+  }
+
+  .dark .hover-glow {
+    @apply transition-all duration-200;
+    &:hover {
+      @apply shadow-[0_0_20px_theme('colors.accent.blue')];
+    }
+  }
+
+  .dark .active-element {
+    @apply bg-dark-quaternary text-text-primary
+           border-text-secondary/30;
+  }
+
+  .glow-effect {
+    @apply relative overflow-hidden;
+    &::after {
+      content: '';
+      @apply absolute inset-0 
+             bg-gradient-to-r from-transparent via-white/20 to-transparent dark:via-white/5
+             translate-x-[-100%]
+             animate-shine;
+    }
+  }
+
+  .dark .glow-border {
+    @apply border border-border-dark
+           hover:border-accent-blue/50
+           transition-colors duration-200;
+  }
+
+  .dark .glow-text {
+    @apply text-text-primary
+           hover:text-accent-blue
+           transition-colors duration-200;
+  }
+}

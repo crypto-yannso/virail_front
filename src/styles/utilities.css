@@ -1,0 +1,23 @@
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 dark:bg-dark-secondary
+           border border-white/10 dark:border-border-dark;
+  }
+
+  .neon-glow {
+    @apply shadow-[0_0_20px_rgba(0,240,255,0.3)] 
+           dark:shadow-[0_0_20px_theme('colors.accent.blue')];
+  }
+
+  .neon-text {
+    @apply bg-gradient-to-r from-neon-blue to-neon-purple 
+           dark:from-accent-blue dark:to-accent-purple 
+           bg-clip-text text-transparent;
+  }
+
+  .animate-hover {
+    @apply transition-all duration-300 
+           hover:scale-[1.02] 
+           hover:neon-glow dark:hover:shadow-dark-glow;
+  }
+}

@@ -1,0 +1,156 @@
+@layer base {
+  .dark {
+    color-scheme: dark;
+  }
+
+  /* Styles de base pour le mode sombre */
+  .dark body {
+    @apply bg-dark-gradient;
+  }
+
+  /* Effet de lueur sur les conteneurs */
+  .dark .glow-container {
+    @apply bg-dark-glow;
+  }
+
+  /* Sélection de texte */
+  .dark ::selection {
+    @apply bg-accent-blue/30 text-text-primary;
+  }
+
+  /* Styles de scrollbar */
+  .dark ::-webkit-scrollbar-track {
+    @apply bg-dark-primary/50;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-dark-quaternary hover:bg-border-darker;
+  }
+
+  /* Styles de texte */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    @apply text-text-primary;
+  }
+
+  .dark p {
+    @apply text-text-secondary;
+  }
+
+  /* Liens */
+  .dark a {
+    @apply text-accent-blue hover:text-accent-blue/80;
+  }
+
+  /* Formulaires */
+  .dark input, .dark textarea, .dark select {
+    @apply bg-dark-tertiary border-border-dark
+           text-text-primary placeholder:text-text-tertiary;
+  }
+
+  .dark input:focus, .dark textarea:focus, .dark select:focus {
+    @apply border-accent-blue/50 ring-accent-blue/20;
+  }
+
+  /* Boutons */
+  .dark button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  /* Icônes */
+  .dark .icon {
+    @apply text-text-secondary hover:text-text-primary
+           transition-colors duration-200;
+  }
+
+  /* Badges */
+  .dark .badge-success {
+    @apply bg-accent-green/20 text-accent-green;
+  }
+
+  .dark .badge-warning {
+    @apply bg-accent-yellow/20 text-accent-yellow;
+  }
+
+  .dark .badge-error {
+    @apply bg-accent-red/20 text-accent-red;
+  }
+
+  .dark .badge-info {
+    @apply bg-accent-blue/20 text-accent-blue;
+  }
+
+  /* Tooltips */
+  .dark .tooltip {
+    @apply bg-dark-secondary border border-border-dark
+           text-text-primary shadow-dark-lg;
+  }
+
+  /* Overlays */
+  .dark .overlay {
+    @apply bg-black/70;
+  }
+
+  /* Dividers */
+  .dark hr {
+    @apply border-border-dark;
+  }
+
+  /* Focus outline */
+  .dark *:focus-visible {
+    @apply outline-none ring-2 ring-accent-blue/50;
+  }
+
+  /* Cards et conteneurs */
+  .dark .card {
+    @apply bg-dark-secondary border-border-dark
+           shadow-dark-sm hover:shadow-dark-md;
+  }
+
+  /* Navigation */
+  .dark .nav-item {
+    @apply text-text-secondary hover:text-text-primary
+           hover:bg-dark-tertiary active:bg-dark-quaternary;
+  }
+
+  /* Tableaux */
+  .dark table {
+    @apply border-border-dark;
+  }
+
+  .dark th {
+    @apply bg-dark-tertiary text-text-secondary border-border-dark;
+  }
+
+  .dark td {
+    @apply border-border-dark text-text-primary;
+  }
+
+  .dark tr:hover {
+    @apply bg-dark-tertiary;
+  }
+
+  /* Effets de survol */
+  .dark .hover-glow {
+    @apply hover:shadow-dark-glow;
+  }
+
+  /* Gradients */
+  .dark .gradient-border {
+    @apply border border-border-dark
+           hover:border-accent-blue/50 transition-colors;
+  }
+
+  /* Éléments interactifs */
+  .dark .interactive {
+    @apply hover:bg-dark-tertiary active:bg-dark-quaternary
+           transition-colors duration-200;
+  }
+
+  /* Effets spéciaux */
+  .dark .glow-effect {
+    @apply after:absolute after:inset-0 
+           after:bg-dark-glow after:opacity-0
+           hover:after:opacity-100
+           after:transition-opacity after:duration-300;
+  }
+}

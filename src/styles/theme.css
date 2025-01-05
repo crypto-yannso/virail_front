@@ -1,0 +1,75 @@
+/* Base theme colors and typography */
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary: theme('colors.indigo.600');
+    --color-primary-light: theme('colors.indigo.100');
+    --color-secondary: theme('colors.purple.600');
+    --color-secondary-light: theme('colors.purple.100');
+    
+    /* Accent Colors */
+    --color-accent-1: theme('colors.emerald.500');
+    --color-accent-2: theme('colors.amber.500');
+    --color-accent-3: theme('colors.rose.500');
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    --gradient-light: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
+    --gradient-dark: linear-gradient(135deg, theme('colors.dark.tertiary'), theme('colors.dark.quaternary'));
+  }
+}
+
+/* Text styles */
+.text-gradient {
+  @apply bg-clip-text text-transparent 
+         bg-gradient-to-r from-indigo-600 to-purple-600
+         dark:from-accent-blue dark:to-accent-purple;
+}
+
+.heading-gradient {
+  @apply bg-clip-text text-transparent 
+         bg-gradient-to-r from-indigo-700 to-purple-700 
+         dark:from-accent-blue dark:to-accent-purple
+         font-semibold;
+}
+
+/* Card styles */
+.card-gradient {
+  @apply bg-gradient-to-br from-white to-indigo-50/30 
+         dark:from-dark-secondary dark:to-dark-tertiary
+         border border-indigo-100 dark:border-border-dark;
+}
+
+.card-hover {
+  @apply hover:shadow-lg hover:shadow-indigo-100/50 
+         dark:hover:shadow-dark-md dark:hover:shadow-black/40 
+         transition-all duration-300;
+}
+
+/* Button styles */
+.btn-gradient {
+  @apply bg-gradient-to-r from-indigo-600 to-purple-600 
+         dark:from-accent-blue dark:to-accent-purple
+         text-white 
+         hover:from-indigo-700 hover:to-purple-700
+         dark:hover:from-accent-blue/90 dark:hover:to-accent-purple/90
+         transition-all duration-300;
+}
+
+/* Input styles */
+.input-gradient {
+  @apply bg-gradient-to-r from-indigo-50 to-purple-50/50
+         dark:from-dark-tertiary dark:to-dark-quaternary
+         border border-indigo-100 dark:border-border-dark
+         focus:border-indigo-300 dark:focus:border-accent-blue/50
+         focus:ring-2 focus:ring-indigo-200/50 dark:focus:ring-accent-blue/20
+         transition-all duration-200;
+}
+
+/* Icon styles */
+.icon-gradient {
+  @apply bg-gradient-to-r from-indigo-100 to-purple-100
+         dark:from-dark-tertiary dark:to-dark-quaternary
+         text-indigo-600 dark:text-accent-blue
+         transition-all duration-200;
+}

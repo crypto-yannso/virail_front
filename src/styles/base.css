@@ -1,0 +1,36 @@
+@layer base {
+  /* Reset all text to use theme colors */
+  * {
+    @apply text-slate-900 dark:text-white;
+  }
+
+  body {
+    @apply bg-white dark:bg-dark-primary font-sans antialiased;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold text-slate-900 dark:text-white;
+  }
+
+  /* Links */
+  a {
+    @apply text-slate-900 dark:text-white 
+           hover:text-slate-700 dark:hover:text-white/80 
+           transition-colors;
+  }
+
+  /* Form elements */
+  input, textarea, select {
+    @apply text-slate-900 dark:text-white 
+           placeholder:text-slate-500 dark:placeholder:text-white/50
+           bg-white dark:bg-dark-tertiary
+           border-slate-200 dark:border-dark-quaternary;
+  }
+
+  /* Buttons */
+  button {
+    @apply text-slate-900 dark:text-white 
+           disabled:text-slate-500 dark:disabled:text-white/50;
+  }
+}

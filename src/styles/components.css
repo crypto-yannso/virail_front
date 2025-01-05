@@ -1,0 +1,100 @@
+@layer components {
+  /* Cards */
+  .card-base {
+    @apply card-gradient dark:bg-dark-secondary rounded-lg shadow-sm dark:shadow-dark-sm p-6 
+           hover:shadow-lg dark:hover:shadow-dark-md transition-all duration-300;
+  }
+
+  .card-stats {
+    @apply card-base flex items-center gap-4;
+  }
+
+  .card-metric {
+    @apply card-base relative overflow-hidden;
+  }
+
+  /* Buttons */
+  .btn-base {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply btn-base bg-gradient-to-r from-indigo-600 to-purple-600 
+           dark:from-accent-blue dark:to-accent-purple
+           text-white hover:from-indigo-700 hover:to-purple-700
+           dark:hover:from-accent-blue/90 dark:hover:to-accent-purple/90;
+  }
+
+  .btn-secondary {
+    @apply btn-base bg-gradient-to-r from-indigo-50 to-purple-50 
+           dark:from-dark-tertiary dark:to-dark-quaternary
+           text-indigo-700 dark:text-white
+           hover:from-indigo-100 hover:to-purple-100
+           dark:hover:from-dark-quaternary dark:hover:to-dark-quaternary;
+  }
+
+  /* Inputs */
+  .input-base {
+    @apply w-full px-4 py-2 rounded-lg 
+           bg-gradient-to-r from-indigo-50/50 to-purple-50/50 
+           dark:from-dark-tertiary dark:to-dark-tertiary
+           border-2 border-indigo-100 dark:border-border-dark
+           focus:border-indigo-300 dark:focus:border-accent-blue/50 
+           focus:ring-2 focus:ring-indigo-200 dark:focus:ring-accent-blue/20;
+  }
+
+  .input-search {
+    @apply input-base pl-10;
+  }
+
+  /* Icons */
+  .icon-gradient {
+    @apply p-2 rounded-lg 
+           bg-gradient-to-r from-indigo-100 to-purple-100 
+           dark:from-dark-tertiary dark:to-dark-quaternary
+           text-indigo-600 dark:text-white;
+  }
+
+  /* Stats */
+  .stat-card {
+    @apply card-stats;
+  }
+
+  .stat-value {
+    @apply text-2xl font-semibold 
+           bg-clip-text text-transparent 
+           bg-gradient-to-r from-indigo-600 to-purple-600
+           dark:from-accent-blue dark:to-accent-purple;
+  }
+
+  .stat-label {
+    @apply text-sm font-medium
+           text-slate-600 dark:text-white/80
+           transition-colors duration-200;
+  }
+
+  /* Badges */
+  .badge-base {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply badge-base bg-emerald-100 dark:bg-accent-green/20 
+           text-emerald-700 dark:text-accent-green;
+  }
+
+  .badge-warning {
+    @apply badge-base bg-amber-100 dark:bg-accent-yellow/20 
+           text-amber-700 dark:text-accent-yellow;
+  }
+
+  .badge-error {
+    @apply badge-base bg-red-100 dark:bg-accent-red/20 
+           text-red-700 dark:text-accent-red;
+  }
+
+  .badge-info {
+    @apply badge-base bg-indigo-100 dark:bg-accent-blue/20 
+           text-indigo-700 dark:text-accent-blue;
+  }
+}
