@@ -3,11 +3,116 @@
 @tailwind utilities;
 
 @layer base {
-  /* Styles initiaux pour éviter le flash */
+  /* Import des polices */
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+  /* Variables de couleurs du thème sombre */
   :root {
-    color-scheme: light dark;
+    --primary-500: #6B5DFF;
+    --primary-600: #5D4EEB;
+    --green-500: #1DD098;
+    --red-500: #FF5C5C;
+    --gray-900: #1F1F1F;
+    --gray-800: #262626;
+    --gray-700: #2E2E2E;
+    --gray-600: #555555;
+    --gray-400: #999999;
   }
 
+  /* Styles de base */
+  body {
+    @apply font-['Plus_Jakarta_Sans'] bg-white dark:bg-[#1F1F1F] min-h-screen overflow-x-hidden
+           text-slate-900 dark:text-white text-[15px] tracking-tight;
+  }
+
+  /* Typographie */
+  h1 {
+    @apply text-[28px] font-bold text-slate-900 dark:text-white leading-tight tracking-tight;
+  }
+
+  h2 {
+    @apply text-[20px] font-semibold text-slate-900 dark:text-white leading-snug tracking-tight;
+  }
+
+  h3 {
+    @apply text-[18px] font-semibold text-slate-900 dark:text-white leading-snug tracking-tight;
+  }
+
+  p {
+    @apply text-[15px] text-slate-600 dark:text-[#999999] leading-relaxed tracking-tight;
+  }
+
+  .text-small {
+    @apply text-[13px] text-slate-500 dark:text-[#999999] tracking-tight;
+  }
+
+  /* Ajout de classes utilitaires pour la typographie */
+  .text-display {
+    @apply text-[32px] font-bold tracking-tight leading-tight;
+  }
+
+  .text-title {
+    @apply text-[24px] font-semibold tracking-tight leading-snug;
+  }
+
+  .text-body {
+    @apply text-[15px] leading-relaxed tracking-tight;
+  }
+
+  .text-caption {
+    @apply text-[13px] leading-normal tracking-tight;
+  }
+
+  /* Mise à jour des composants pour le thème sombre */
+  .dashboard-card {
+    @apply bg-white dark:bg-[#2E2E2E]
+           border-2 border-slate-200 dark:border-[#555555]
+           rounded-xl
+           shadow-[0_8px_16px_-6px_rgba(15,23,42,0.08)] dark:shadow-[0_4px_20px_-3px_rgba(0,0,0,0.3)]
+           hover:shadow-[0_16px_24px_-8px_rgba(15,23,42,0.12)] dark:hover:shadow-[0_8px_24px_-3px_rgba(0,0,0,0.4)]
+           hover:border-primary-500 dark:hover:border-primary-500/30
+           transition-all duration-300;
+  }
+
+  /* Boutons avec les nouvelles couleurs */
+  .button-primary {
+    @apply bg-[#6B5DFF] hover:bg-[#5D4EEB]
+           text-white font-semibold
+           rounded-lg px-4 py-2.5;
+  }
+
+  /* Indicateurs de statut */
+  .status-positive {
+    @apply text-[#1DD098] dark:text-[#1DD098];
+  }
+
+  .status-negative {
+    @apply text-[#FF5C5C] dark:text-[#FF5C5C];
+  }
+
+  /* Textes avec la nouvelle hiérarchie */
+  .text-primary {
+    @apply text-slate-900 dark:text-white;
+  }
+
+  .text-secondary {
+    @apply text-slate-600 dark:text-[#999999];
+  }
+
+  .text-tertiary {
+    @apply text-slate-500 dark:text-[#555555];
+  }
+
+  /* Arrière-plans */
+  .bg-surface {
+    @apply bg-white dark:bg-[#2E2E2E];
+  }
+
+  .bg-surface-secondary {
+    @apply bg-slate-50 dark:bg-[#262626];
+  }
+
+  /* Styles initiaux pour éviter le flash */
   html.dark {
     color-scheme: dark;
   }
@@ -91,9 +196,9 @@
   }
 
   @keyframes pulse-border {
-    0% { border-color: rgba(74, 144, 226, 0.3); }
-    50% { border-color: rgba(74, 144, 226, 0.1); }
-    100% { border-color: rgba(74, 144, 226, 0.3); }
+    0% { border-color: rgba(107, 93, 255, 0.3); }
+    50% { border-color: rgba(107, 93, 255, 0.1); }
+    100% { border-color: rgba(107, 93, 255, 0.3); }
   }
 
   @keyframes float {
@@ -126,7 +231,7 @@
 
   .dashboard-card::before {
     @apply content-[''] absolute inset-0 opacity-0 transition-opacity duration-300
-           bg-gradient-to-br from-accent-blue/5 via-transparent to-accent-purple/5;
+           bg-gradient-to-br from-primary-500/5 via-transparent to-primary-600/5;
     background-size: 200% 200%;
     animation: gradient-shift 15s ease infinite;
   }
