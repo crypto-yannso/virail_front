@@ -5,6 +5,7 @@ import PerformanceGraph from './components/PerformanceGraph';
 import MetricsGrid from './components/MetricsGrid';
 import QuickActions from './components/QuickActions';
 import ActivityFeed from './components/ActivityFeed';
+import ContentTypeChart from './components/ContentTypeChart';
 import { useDashboardData } from '../../hooks/useDashboardData';
 import { useTranslation } from '../../hooks/useTranslation';
 
@@ -40,14 +41,24 @@ const Dashboard = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
-          <div className="dashboard-card p-6">
-            <PerformanceGraph data={data?.performance} loading={loading} />
-          </div>
+          <PerformanceGraph data={data?.performance} loading={loading} />
         </div>
         <div>
           <ActivityFeed />
         </div>
       </div>
+
+      <Section>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <ContentTypeChart loading={loading} />
+          <div className="dashboard-card p-6">
+            <h2 className="text-lg font-semibold mb-4">Distribution Géographique</h2>
+            <div className="h-[400px] flex items-center justify-center text-gray-500">
+              Carte à venir...
+            </div>
+          </div>
+        </div>
+      </Section>
     </div>
   );
 };

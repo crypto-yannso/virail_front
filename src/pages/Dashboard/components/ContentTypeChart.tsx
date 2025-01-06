@@ -3,57 +3,27 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
-  Legend,
-  Filler
+  Legend
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
-  Legend,
-  Filler
+  Legend
 );
 
-interface PerformanceGraphProps {
+interface ContentTypeChartProps {
   loading?: boolean;
-  data?: any;
 }
 
-const PerformanceGraph: React.FC<PerformanceGraphProps> = ({ loading }) => {
-  // Données factices pour le graphique
-  const labels = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'];
-  
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: 'Engagement',
-        data: [65, 78, 90, 85, 95, 110, 108, 120, 115, 130, 125, 140],
-        borderColor: '#6B5DFF',
-        backgroundColor: 'rgba(107, 93, 255, 0.1)',
-        fill: true,
-        tension: 0.4,
-      },
-      {
-        label: 'Conversions',
-        data: [30, 35, 40, 45, 48, 50, 55, 58, 62, 65, 70, 75],
-        borderColor: '#1DD098',
-        backgroundColor: 'rgba(29, 208, 152, 0.1)',
-        fill: true,
-        tension: 0.4,
-      }
-    ],
-  };
-
+const ContentTypeChart: React.FC<ContentTypeChartProps> = ({ loading }) => {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -71,7 +41,7 @@ const PerformanceGraph: React.FC<PerformanceGraphProps> = ({ loading }) => {
       },
       title: {
         display: true,
-        text: 'Performance Annuelle',
+        text: 'Distribution par Type de Contenu',
         font: {
           size: 16,
           family: "'Inter', sans-serif",
@@ -126,6 +96,52 @@ const PerformanceGraph: React.FC<PerformanceGraphProps> = ({ loading }) => {
     },
   };
 
+  const data = {
+    labels: ['Articles', 'Vidéos', 'Infographies', 'Podcasts', 'Newsletters'],
+    datasets: [
+      {
+        label: 'Nombre de Publications',
+        data: [45, 32, 28, 15, 20],
+        backgroundColor: [
+          'rgba(107, 93, 255, 0.8)',  // Violet
+          'rgba(29, 208, 152, 0.8)',  // Vert
+          'rgba(255, 159, 64, 0.8)',  // Orange
+          'rgba(255, 99, 132, 0.8)',  // Rose
+          'rgba(54, 162, 235, 0.8)',  // Bleu
+        ],
+        borderColor: [
+          'rgba(107, 93, 255, 1)',
+          'rgba(29, 208, 152, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+        ],
+        borderWidth: 1,
+        borderRadius: 6,
+      },
+      {
+        label: 'Engagement Moyen',
+        data: [85, 65, 55, 40, 35],
+        backgroundColor: [
+          'rgba(107, 93, 255, 0.4)',
+          'rgba(29, 208, 152, 0.4)',
+          'rgba(255, 159, 64, 0.4)',
+          'rgba(255, 99, 132, 0.4)',
+          'rgba(54, 162, 235, 0.4)',
+        ],
+        borderColor: [
+          'rgba(107, 93, 255, 0.6)',
+          'rgba(29, 208, 152, 0.6)',
+          'rgba(255, 159, 64, 0.6)',
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+        ],
+        borderWidth: 1,
+        borderRadius: 6,
+      }
+    ],
+  };
+
   if (loading) {
     return (
       <div className="h-[400px] flex items-center justify-center">
@@ -138,10 +154,12 @@ const PerformanceGraph: React.FC<PerformanceGraphProps> = ({ loading }) => {
   }
 
   return (
-    <div className="h-[400px]">
-      <Line data={data} options={options} />
+    <div className="dashboard-card p-6">
+      <div className="h-[400px]">
+        <Bar options={options} data={data} />
+      </div>
     </div>
   );
 };
 
-export default PerformanceGraph;
+export default ContentTypeChart; 
