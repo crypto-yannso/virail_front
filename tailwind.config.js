@@ -52,6 +52,7 @@ export default {
         'dark-sm': '0 2px 4px 0 rgba(0, 0, 0, 0.2)',
         'dark-md': '0 4px 6px -1px rgba(0, 0, 0, 0.3)',
         'dark-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.4)',
+        'dark-xl': '0 15px 25px -5px rgba(0, 0, 0, 0.5)',
         'dark-glow': '0 0 20px rgba(0, 102, 255, 0.15)',
         'dark-glow-strong': '0 0 30px rgba(0, 102, 255, 0.25)',
       }
