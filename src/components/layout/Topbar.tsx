@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Menu } from 'lucide-react';
 import { useStore } from '../../store/useStore';
+
+const useScrollDirection = () => {
+  const [scrollDirection, setScrollDirection] = useState("up");
+  const [prevOffset, setPrevOffset] = useState(0);
+
+  useEffect(() => {
+    const toggleScrollDirection = () => {
+      const scrollY = window.pageYOffset;
+      if (scrollY === 0) {
+        setScrollDirection("up");
+      } else if (scrollY > prevOffset) {
+        setScrollDirection("down");
+      } else if (scrollY < prevOffset) {
+        setScrollDirection("up");
+      }
+      setPrevOffset(scrollY);
+    };
+
+    window.addEventListener("scroll", toggleScrollDirection);
+    return () => window.removeEventListener("scroll", toggleScrollDirection);
+  }, [prevOffset]);
+
+  return scrollDirection;
+};
 
 const AIStatusIndicator = () => {
   const aiStatus = useStore((state) => state.aiStatus);
@@ -21,20 +45,15 @@ const AIStatusIndicator = () => {
 
 const Topbar = () => {
   const { toggleRightPanel } = useStore();
+  const scrollDirection = useScrollDirection();
 
   return (
-    <header className="h-[8vh] fixed top-0 right-0 left-0 md:left-[15vw] bg-white dark:bg-dark-primary border-b border-gray-200 dark:border-border-dark px-4 md:px-6 flex items-center justify-between z-40">
+    <header className={`h-[8vh] fixed top-0 right-0 left-0 md:left-[15vw] bg-white dark:bg-dark-primary border-b border-gray-200 dark:border-border-dark px-4 md:px-6 flex items-center justify-between z-40 transition-transform duration-300 ${scrollDirection === "down" ? "-translate-y-full md:translate-y-0" : "translate-y-0"}`}>
       <div className="flex items-center gap-4">
-        <button 
-          onClick={toggleRightPanel}
-          className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-dark-tertiary rounded-lg transition-colors"
-        >
-          <Menu size={20} className="text-slate-900 dark:text-text-primary" />
-        </button>
         <AIStatusIndicator />
       </div>
 
-      <div className="flex-1 max-w-2xl mx-8">
+      <div className="flex-1 max-w-2xl ml-2 md:mx-8">
         <div className="relative">
           <input
             type="text"
