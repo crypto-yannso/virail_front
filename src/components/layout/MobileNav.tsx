@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, PenTool, Bot, Library, BarChart2, Settings } from 'lucide-react';
+import { Home, PenTool, Bot, Library, BarChart2, Settings, MessageSquare } from 'lucide-react';
 
 const navItems = [
   { path: '/', icon: Home, label: 'Home' },
@@ -8,12 +8,13 @@ const navItems = [
   { path: '/automation', icon: Bot, label: 'AI' },
   { path: '/library', icon: Library, label: 'Library' },
   { path: '/analytics', icon: BarChart2, label: 'Analytics' },
+  { path: '/brand-voice', icon: MessageSquare, label: 'Voice' },
   { path: '/settings', icon: Settings, label: 'Settings' },
 ];
 
 const MobileNav = () => {
   return (
-    <nav className="bg-white dark:bg-dark-primary border-t border-gray-200 dark:border-border-dark px-4 py-2">
+    <nav className="bg-white dark:bg-dark-primary border-t border-gray-200 dark:border-border-dark px-2 py-2">
       <div className="flex justify-between items-center">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -22,7 +23,7 @@ const MobileNav = () => {
               key={item.path}
               to={item.path}
               className={({ isActive }) =>
-                `flex flex-col items-center p-2 rounded-lg ${
+                `flex flex-col items-center p-1.5 rounded-lg ${
                   isActive 
                     ? 'text-primary dark:text-accent-blue' 
                     : 'text-slate-600 dark:text-text-secondary'
