@@ -15,6 +15,9 @@ import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import Help from './pages/Help';
 import MobileNav from './components/layout/MobileNav';
+import Login from './pages/auth/Login/Login';
+import Register from './pages/auth/Register/Register';
+
 
 const queryClient = new QueryClient();
 
@@ -41,6 +44,8 @@ function App() {
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/help" element={<Help />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
                 </Routes>
               </div>
             </main>
