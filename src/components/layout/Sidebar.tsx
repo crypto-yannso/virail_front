@@ -7,6 +7,7 @@ import {
 import { cn } from '@/lib/utils';
 import { useUser } from '../../hooks/useUser';
 import type { MenuItem } from '../../types';
+import { userDatas } from '@/providers/AuthProvider';
 
 const menuItems: MenuItem[] = [
   { id: 'dashboard', label: 'Dashboard', icon: 'Home', path: '/' },
@@ -21,6 +22,7 @@ const menuItems: MenuItem[] = [
 const Sidebar = () => {
   const navigate = useNavigate();
   const { user } = useUser();
+  const { firstName, lastName } = userDatas();
   
   const getIcon = (iconName: string) => {
     const icons: { [key: string]: React.ElementType } = {
@@ -74,7 +76,7 @@ const Sidebar = () => {
           )}
           <div className="text-left">
             <p className="text-sm font-medium text-slate-900 dark:text-text-primary">
-              {user ? `${user.firstName} ${user.lastName}` : 'Loading...'}
+              {user ? `${firstName} ${lastName}` : 'Loading...'}
             </p>
             <p className="text-xs text-slate-600 dark:text-text-secondary">{user?.role}</p>
           </div>

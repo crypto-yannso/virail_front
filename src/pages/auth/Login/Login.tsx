@@ -1,8 +1,10 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAuthDispatch } from "../../../providers/AuthProvider";
+import { UserContextType } from "../../../providers/AuthProvider";
 import Cookies from "js-cookie";
+import { UserRepository } from "@/domain/repository/UserRepository";
+import { useAuthenticated } from "@/providers/AuthenticatedProvider";
 
 interface LoginFormData {
   email: string;
@@ -10,18 +12,19 @@ interface LoginFormData {
 }
 
 const Login: React.FC = () => {
-  const [formData, setFormData] = useState<LoginFormData>({
-    email: "",
-    password: "",
+  const [formData, setFormData] = useState<UserContextType>({
+      email: "",
+      password: "",
   });
 
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
-  const dispatch = useAuthDispatch();
   const navigate = useNavigate();
+  const userRepository = new UserRepository();
+  const {isAuthenticated, setIsAuthenticated } = useAuthenticated();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+      setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -30,35 +33,32 @@ const Login: React.FC = () => {
     setSuccess(false);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/login/",
-        formData,
-        {
-          withCredentials: true, // Pour inclure les cookies
-        }
+      const tokens = await userRepository.loginUser(formData);
+      console.log("Logged in user:", tokens.user);
+
+      // Met à jour l'état d'authentification
+      setIsAuthenticated(true);
+
+      // Affiche un message de succès
+      setSuccess(true);
+    } catch (err) {
+      console.error("Login error:", err);
+      setError(
+        typeof err === "string"
+          ? err
+          : "Une erreur inattendue s'est produite."
       );
-
-      if (response.status === 200 && response.data.user) {
-        const { user, access_token } = response.data;
-        localStorage.setItem("user", JSON.stringify(user));
-        localStorage.setItem("access_token", access_token);
-
-        // dispatch({
-        //   type: "LOGIN",
-        //   payload: { user, accessToken: "" }, // Le token est dans les cookies
-        // });
-
-        Cookies.set("access_token", response.data.accessToken || "", { expires: 7 });
-        setSuccess(true);
-        navigate("/");
-      } else {
-        throw new Error("Invalid login response");
-      }
-    } catch (err: any) {
-      console.error("Error during login:", err);
-      setError(err.response?.data?.detail || "Une erreur est survenue");
     }
-  }
+  };
+
+  // Redirection si l'utilisateur est authentifié
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
+
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-dark-primary">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg dark:bg-dark-secondary">

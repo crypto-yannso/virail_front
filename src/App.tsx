@@ -32,19 +32,18 @@ const Layout = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-dark-primary flex">
       {/* Sidebar et Topbar seulement affichés si ce n'est pas la page de login ou register */}
-      {!isAuthPage && (
         <div className="hidden md:block">
           <Sidebar />
         </div>
-      )}
+    
 
       <main className="flex-1 md:ml-[15vw] pb-16 md:pb-0">
-        {!isAuthPage && <Topbar />}
+       <Topbar />
         <div className="mt-[8vh] p-4 md:p-6">
           <Routes>
             {/* Routes publiques */}
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} /> 
+            {/* <Route path="/register" element={<Register />} />  */}
 
             {/* Routes protégées */}
             <Route element={<ProtectedRoute />}>
@@ -74,13 +73,11 @@ const Layout = () => {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthenticatedProvider>
       <ThemeProvider>
         <Router>
           <Layout /> 
         </Router>
       </ThemeProvider>
-      </AuthenticatedProvider>
     </QueryClientProvider>
   );
 }

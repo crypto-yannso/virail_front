@@ -39,10 +39,10 @@ export const UserProvider = ({ children }: UserProviderType) => {
           const decodedToken = jwtDecode(token);
           console.log('Decoded Token :', decodedToken);
       
-          setFirstName(decodedToken.first_name);
-          console.log('First Name :', decodedToken.first_name);
-          setLastName(decodedToken.last_name);
-          console.log('Last Name :', decodedToken.last_name);
+          setFirstName(decodedToken.firstname);
+          console.log('First Name :', decodedToken.firstname);
+          setLastName(decodedToken.lastname);
+          console.log('Last Name :', decodedToken.lastname);
           setEmail(decodedToken.email);
           console.log('Email :', decodedToken.email);
           setIs_staff(decodedToken.is_staff);
