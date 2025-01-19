@@ -62,7 +62,7 @@ export class UserRepository {
      */
     async logoutUser(axiosInstance: AxiosInstance): Promise<TokenType> {
         return new Promise((resolve, reject) => {
-            axiosInstance.post(`${import.meta.env.VITE_API_BASE_URL}/api/v1/logout/`, {
+            axiosInstance.post(`${UserRepository.baseURL}/logout/`, {
                 withCredentials: true,
             })
             .then((response: AxiosResponse) => {

@@ -1,7 +1,25 @@
 import React from 'react';
 import { Shield, Key, Smartphone } from 'lucide-react';
+import { useAxios } from '@/providers/AxiosProvider';
+import { useAuthenticated } from '@/providers/AuthenticatedProvider';
+import { UserRepository } from '@/domain/Repository/UserRepository';
+import { LogoutUserUseCase } from '@/domain/UseCase/User/LogoutUser';
 
 const SecuritySettings = () => {
+  const {axiosInstance} = useAxios();
+  const {setIsAuthenticated} = useAuthenticated();
+  const userRepository = new UserRepository();
+  const logoutUserUseCase = new LogoutUserUseCase(userRepository);
+
+  const handleLogout = async () => {
+    try{
+      await logoutUserUseCase.execute(axiosInstance)
+      setIsAuthenticated(false)
+      localStorage.clear()
+    } catch (error) {
+      console.error('Failed to logout:', error);
+    }
+  }
   return (
     <div className="bg-white dark:bg-dark-secondary border border-slate-200/60 dark:border-border-dark rounded-lg shadow-[0_8px_16px_-6px_rgba(15,23,42,0.08)] dark:shadow-dark-sm p-6">
       <div className="flex items-center gap-2 mb-6">
@@ -60,7 +78,7 @@ const SecuritySettings = () => {
                 <p className="text-sm font-medium text-slate-900 dark:text-text-primary">Current Session</p>
                 <p className="text-xs text-slate-500 dark:text-text-secondary">Last active: Just now</p>
               </div>
-              <button className="text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300">
+              <button className="text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300" onClick={handleLogout}>
                 End Session
               </button>
             </div>
@@ -72,3 +90,7 @@ const SecuritySettings = () => {
 };
 
 export default SecuritySettings;
+
+function useAuth(): { axiosInstance: any; } {
+  throw new Error('Function not implemented.');
+}

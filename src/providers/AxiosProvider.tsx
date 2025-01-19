@@ -26,7 +26,7 @@ export const AxiosContext = createContext<AxiosContextType | null>(null);
 
 export const AxiosProvider = ({children}: AxiosProvider) => {
 
-    const REFRESH_TOKEN = BASE_URL + "api/v1/token/refresh/"
+    const REFRESH_TOKEN = BASE_URL + "api/token/refresh/"
     const userRepository = new UserRepository()
     const logoutUserUseCase = new LogoutUserUseCase(userRepository)
     const { isAuthenticated, setIsAuthenticated } = useAuthenticated()
