@@ -8,6 +8,8 @@ import { cn } from '@/lib/utils';
 import { useUser } from '../../hooks/useUser';
 import type { MenuItem } from '../../types';
 import { userDatas } from '@/providers/AuthProvider';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store/store';
 
 const menuItems: MenuItem[] = [
   { id: 'dashboard', label: 'Dashboard', icon: 'Home', path: '/' },
@@ -21,8 +23,8 @@ const menuItems: MenuItem[] = [
 
 const Sidebar = () => {
   const navigate = useNavigate();
-  const { user } = useUser();
-  const { firstName, lastName } = userDatas();
+  const user = useSelector((state: RootState) => state.user); // Récupérez les données de l'utilisateur depuis Redux
+
   
   const getIcon = (iconName: string) => {
     const icons: { [key: string]: React.ElementType } = {
@@ -75,8 +77,8 @@ const Sidebar = () => {
             <User size={20} className="text-gray-600 dark:text-text-secondary" />
           )}
           <div className="text-left">
-            <p className="text-sm font-medium text-slate-900 dark:text-text-primary">
-              {user ? `${firstName} ${lastName}` : 'Loading...'}
+          <p className="text-sm font-medium text-slate-900 dark:text-text-primary">
+              {user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : 'Loading...'}
             </p>
             <p className="text-xs text-slate-600 dark:text-text-secondary">{user?.role}</p>
           </div>

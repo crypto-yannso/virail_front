@@ -27,7 +27,7 @@ const Layout = () => {
   const location = useLocation(); // useLocation est utilisé ici
 
   // Vérifier si l'utilisateur est sur la page de login ou d'enregistrement
-  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+  // const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
 
   return (
     <div className="min-h-screen bg-white dark:bg-dark-primary flex">

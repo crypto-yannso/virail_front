@@ -4,13 +4,17 @@ import { useTranslation } from '../../../hooks/useTranslation';
 import { useUser } from '../../../hooks/useUser';
 import { useUserStore } from '../../../store/userStore';
 import { userDatas } from '@/providers/AuthProvider';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store/store';
 
 const UserInfo = () => {
   const { t } = useTranslation();
-  const { user, loading } = useUser();
+  const {  loading } = useUser();
   const { updateAvatar } = useUserStore();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const {email, firstName, lastName} = userDatas();
+  // const {email, firstName, lastName} = userDatas();
+  const user = useSelector((state: RootState) => state.user); // Récupérez les données de l'utilisateur depuis Redux
+
 
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -60,12 +64,12 @@ const UserInfo = () => {
         
         <div className="flex-1">
           <h2 className="text-xl font-semibold text-slate-900 dark:text-text-primary">
-            {`${firstName} ${lastName}`}
+            {`${user.firstName} ${user.lastName}`}
           </h2>
           <div className="mt-2 space-y-2">
             <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-text-secondary">
               <Mail size={16} className="text-slate-400 dark:text-text-secondary" />
-              <span>{email}</span>
+              <span> {user.email || 'No email'}</span>
             </div>
             {user.website && (
               <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-text-secondary">

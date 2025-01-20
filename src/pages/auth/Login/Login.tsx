@@ -1,64 +1,57 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { UserContextType } from "../../../providers/AuthProvider";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+// import { UserContextType } from "../../../providers/AuthProvider";
+// import Cookies from "js-cookie";
+// import { UserRepository } from "@/domain/repository/UserRepository";
+// import { useAuthenticated } from "@/providers/AuthenticatedProvider";
+
+import { useDispatch } from 'react-redux';
+import { setIsAuthenticated } from '../../../redux/slices/authSlice';
+import { setUser } from '../../../redux/slices/userSlice';
+import axiosInstance from '../../../providers/AxiosProvider';
 import Cookies from "js-cookie";
-import { UserRepository } from "@/domain/repository/UserRepository";
-import { useAuthenticated } from "@/providers/AuthenticatedProvider";
+import { jwtDecode } from "jwt-decode";
+
 
 interface LoginFormData {
   email: string;
   password: string;
 }
 
-const Login: React.FC = () => {
-  const [formData, setFormData] = useState<UserContextType>({
-      email: "",
-      password: "",
-  });
+const Login = () => {
+  const [formData, setFormData] = useState({ email: '', password: '', username: '' });
+  const dispatch = useDispatch();
 
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<boolean>(false);
-  const navigate = useNavigate();
-  const userRepository = new UserRepository();
-  const {isAuthenticated, setIsAuthenticated } = useAuthenticated();
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      setFormData({ ...formData, [e.target.id]: e.target.value });
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(false);
-
     try {
-      const tokens = await userRepository.loginUser(formData);
-      console.log("Logged in user:", tokens.user);
+      // Envoyer les données de connexion au serveur
+      const response = await axiosInstance.post('/login/', formData, { withCredentials: true });
 
-      // Met à jour l'état d'authentification
-      setIsAuthenticated(true);
+      // Stocker le token dans un cookie sécurisé et HTTP-only
+      Cookies.set('access_token', response.data.access_token, { secure: true, httpOnly: true });
 
-      // Affiche un message de succès
-      setSuccess(true);
-    } catch (err) {
-      console.error("Login error:", err);
-      setError(
-        typeof err === "string"
-          ? err
-          : "Une erreur inattendue s'est produite."
+      // Extraire les données de l'utilisateur de la réponse
+      const userData = response.data.user;
+
+      // Mettre à jour le store Redux avec les données de l'utilisateur
+      dispatch(setIsAuthenticated(true));
+      dispatch(
+        setUser({
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          email: userData.email,
+          is_staff: userData.is_staff,
+        })
       );
+
+      console.log('Login successful!');
+      console.log('User data:', userData);
+    } catch (error) {
+      console.error('Login failed:', error);
     }
   };
-
-  // Redirection si l'utilisateur est authentifié
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/");
-    }
-  }, [isAuthenticated, navigate]);
-
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-dark-primary">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg dark:bg-dark-secondary">
@@ -70,7 +63,7 @@ const Login: React.FC = () => {
           Connectez-vous pour continuer
         </p>
 
-        {error && (
+        {/* {error && (
           <p className="text-sm text-center text-red-500">
             {error}
           </p>
@@ -80,7 +73,7 @@ const Login: React.FC = () => {
           <p className="text-sm text-center text-green-500">
             Connexion réussie ! Redirection...
           </p>
-        )}
+        )} */}
 
         {/* Form */}
         <form className="space-y-4"  onSubmit={handleSubmit}>
@@ -95,8 +88,7 @@ const Login: React.FC = () => {
             <input
               type="email"
               id="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}
               placeholder="Entrez votre email"
               className="w-full px-4 py-2 mt-1 text-sm bg-gray-50 border rounded-md shadow-sm dark:bg-dark-tertiary dark:border-border-dark focus:outline-none focus:ring-2 focus:ring-primary-500"
               required
@@ -113,8 +105,7 @@ const Login: React.FC = () => {
             <input
               type="text"
               id="username"
-              value={formData.username}
-              onChange={handleChange}
+              value={formData.username} onChange={e => setFormData({ ...formData, username: e.target.value })}
               placeholder="Entrez votre username"
               className="w-full px-4 py-2 mt-1 text-sm bg-gray-50 border rounded-md shadow-sm dark:bg-dark-tertiary dark:border-border-dark focus:outline-none focus:ring-2 focus:ring-primary-500"
               required
@@ -133,8 +124,7 @@ const Login: React.FC = () => {
             <input
               type="password"
               id="password"
-              value={formData.password}
-              onChange={handleChange}
+              value={formData.password} onChange={e => setFormData({ ...formData, password: e.target.value })}
               placeholder="Entrez votre mot de passe"
               className="w-full px-4 py-2 mt-1 text-sm bg-gray-50 border rounded-md shadow-sm dark:bg-dark-tertiary dark:border-border-dark focus:outline-none focus:ring-2 focus:ring-primary-500"
               required
