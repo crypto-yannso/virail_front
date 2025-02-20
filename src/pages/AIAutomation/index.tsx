@@ -52,27 +52,27 @@ const AIAutomation = () => {
         </div>
 
         {/* Fixed Action Button */}
-        <div className="fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 md:left-auto md:-translate-x-0 md:right-6 z-40">
+        <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40">
           <button 
             onClick={handleToggleAutomation}
-            className={`flex items-center justify-center gap-1.5 py-2 px-4 rounded-lg font-display 
-                      uppercase tracking-wider text-sm transition-all duration-300
+            className={`flex items-center justify-center gap-2 py-3 px-8 rounded-lg font-display 
+                      uppercase tracking-wider text-lg transition-all duration-300
                       shadow-[0_4px_14px_0_rgba(0,0,0,0.08)] dark:shadow-[0_4px_14px_0_rgba(0,0,0,0.3)]
                       backdrop-blur-xl ${
                         isActive 
-                          ? 'bg-red-500/15 text-red-700 border border-red-500 hover:bg-red-500/25 hover:border-red-600 hover:shadow-[0_0_20px_rgba(239,68,68,0.4)] dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/50 dark:hover:bg-red-500/20 dark:hover:border-red-400 dark:hover:shadow-[0_0_30px_rgba(239,68,68,0.3)]' 
-                          : 'bg-primary-600/15 text-primary-700 border border-primary-500 hover:bg-primary-600/25 hover:border-primary-600 hover:shadow-[0_0_20px_rgba(74,144,226,0.4)] dark:bg-accent-blue/10 dark:text-accent-blue dark:border-accent-blue/50 dark:hover:bg-accent-blue/20 dark:hover:border-accent-blue/80 dark:hover:shadow-[0_0_30px_rgba(74,144,226,0.3)]'
+                          ? 'bg-red-500/15 text-red-700 border-2 border-red-500 hover:bg-red-500/25 hover:border-red-600 hover:shadow-[0_0_20px_rgba(239,68,68,0.4)] dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/50 dark:hover:bg-red-500/20 dark:hover:border-red-400 dark:hover:shadow-[0_0_30px_rgba(239,68,68,0.3)]' 
+                          : 'bg-primary-600/15 text-primary-700 border-2 border-primary-500 hover:bg-primary-600/25 hover:border-primary-600 hover:shadow-[0_0_20px_rgba(74,144,226,0.4)] dark:bg-accent-blue/10 dark:text-accent-blue dark:border-accent-blue/50 dark:hover:bg-accent-blue/20 dark:hover:border-accent-blue/80 dark:hover:shadow-[0_0_30px_rgba(74,144,226,0.3)]'
                       }`}
           >
-            <div className={`w-6 h-6 rounded-full flex items-center justify-center 
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center 
                           transition-transform duration-300 ${
                             isActive 
                               ? 'bg-red-100 dark:bg-red-500/20 dark:shadow-[inset_0_0_8px_rgba(239,68,68,0.3)]' 
                               : 'bg-primary-100 dark:bg-accent-blue/20 dark:shadow-[inset_0_0_8px_rgba(74,144,226,0.3)]'
                           }`}>
-              {isActive ? <Pause size={14} className="text-red-700 dark:text-red-400" /> : <Play size={14} className="text-primary-700 dark:text-accent-blue" />}
+              {isActive ? <Pause size={18} className="text-red-700 dark:text-red-400" /> : <Play size={18} className="text-primary-700 dark:text-accent-blue" />}
             </div>
-            <span>{isActive ? 'Pause' : 'Start'}</span>
+            <span>{isActive ? 'Pause Automation' : 'Start Automation'}</span>
           </button>
         </div>
       </div>

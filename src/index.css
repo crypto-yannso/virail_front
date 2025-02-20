@@ -406,61 +406,47 @@
 
   /* Styles personnalisés pour le curseur d'intensité */
   input[type="range"] {
-    @apply appearance-none bg-slate-200 dark:bg-dark-tertiary rounded-full h-1.5;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    transition: all 0.2s ease-out;
+    @apply appearance-none bg-slate-200 dark:bg-dark-tertiary rounded-lg h-2;
   }
 
   input[type="range"]::-webkit-slider-thumb {
-    @apply appearance-none w-4 h-4 rounded-full bg-accent-blue
-           cursor-pointer shadow-lg hover:ring-4 hover:ring-accent-blue/20;
-    margin-top: -5px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform, box-shadow;
+    @apply appearance-none w-5 h-5 rounded-full bg-accent-blue
+           cursor-pointer shadow-lg hover:ring-4 hover:ring-accent-blue/20
+           transition-all duration-200;
   }
 
   input[type="range"]::-moz-range-thumb {
-    @apply appearance-none w-4 h-4 rounded-full bg-accent-blue
+    @apply appearance-none w-5 h-5 rounded-full bg-accent-blue
            cursor-pointer shadow-lg hover:ring-4 hover:ring-accent-blue/20
-           border-none;
-    margin-top: -5px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform, box-shadow;
+           transition-all duration-200 border-none;
   }
 
   input[type="range"]::-ms-thumb {
-    @apply appearance-none w-4 h-4 rounded-full bg-accent-blue
-           cursor-pointer shadow-lg hover:ring-4 hover:ring-accent-blue/20;
-    margin-top: -5px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform, box-shadow;
+    @apply appearance-none w-5 h-5 rounded-full bg-accent-blue
+           cursor-pointer shadow-lg hover:ring-4 hover:ring-accent-blue/20
+           transition-all duration-200;
   }
 
   input[type="range"]::-webkit-slider-runnable-track {
-    @apply rounded-full h-1.5 bg-slate-200 dark:bg-dark-tertiary;
-    transition: background-color 0.2s ease-out;
+    @apply rounded-lg h-2 bg-slate-200 dark:bg-dark-tertiary;
   }
 
   input[type="range"]::-moz-range-track {
-    @apply rounded-full h-1.5 bg-slate-200 dark:bg-dark-tertiary;
-    transition: background-color 0.2s ease-out;
+    @apply rounded-lg h-2 bg-slate-200 dark:bg-dark-tertiary;
   }
 
   input[type="range"]::-ms-track {
-    @apply rounded-full h-1.5 bg-slate-200 dark:bg-dark-tertiary;
-    transition: background-color 0.2s ease-out;
+    @apply rounded-lg h-2 bg-slate-200 dark:bg-dark-tertiary;
   }
 
   /* Effet de progression du curseur */
   input[type="range"].slider-primary {
     background: linear-gradient(to right, 
-      theme('colors.accent.blue') 0%,
-      theme('colors.accent.blue') var(--range-progress),
+      theme('colors.primary.500') 0%,
+      theme('colors.primary.500') var(--range-progress),
       theme('colors.slate.200') var(--range-progress),
       theme('colors.slate.200') 100%
     );
-    transition: background 0.2s ease-out;
   }
 
   .dark input[type="range"].slider-primary {
@@ -470,48 +456,6 @@
       theme('colors.dark.tertiary') var(--range-progress),
       theme('colors.dark.tertiary') 100%
     );
-    transition: background 0.2s ease-out;
-  }
-
-  /* Hover et focus states avec animations */
-  input[type="range"]:hover::-webkit-slider-thumb {
-    @apply ring-2 ring-accent-blue/20 transform scale-110;
-  }
-
-  input[type="range"]:focus::-webkit-slider-thumb {
-    @apply ring-4 ring-accent-blue/20 transform scale-110;
-  }
-
-  input[type="range"]:hover::-moz-range-thumb {
-    @apply ring-2 ring-accent-blue/20 transform scale-110;
-  }
-
-  input[type="range"]:focus::-moz-range-thumb {
-    @apply ring-4 ring-accent-blue/20 transform scale-110;
-  }
-
-  input[type="range"]:hover::-ms-thumb {
-    @apply ring-2 ring-accent-blue/20 transform scale-110;
-  }
-
-  input[type="range"]:focus::-ms-thumb {
-    @apply ring-4 ring-accent-blue/20 transform scale-110;
-  }
-
-  /* Animation active state */
-  input[type="range"]:active::-webkit-slider-thumb {
-    @apply transform scale-105;
-    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  input[type="range"]:active::-moz-range-thumb {
-    @apply transform scale-105;
-    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  input[type="range"]:active::-ms-thumb {
-    @apply transform scale-105;
-    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Effet de glow pour les éléments interactifs */
@@ -729,10 +673,7 @@
 
   /* Styles personnalisés pour le curseur d'intensité */
   input[type="range"] {
-    @apply appearance-none bg-slate-200 dark:bg-dark-tertiary rounded-full h-1.5;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    transition: all 0.2s ease-out;
+    @apply appearance-none bg-slate-200 dark:bg-dark-tertiary rounded-lg h-2;
   }
 }
 
